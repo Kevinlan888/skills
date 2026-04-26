@@ -6,7 +6,7 @@
 
 | 技能名称 | 描述 | 适用场景 |
 | :--- | :--- | :--- |
-| [**Media Library Organizer**](./media-library-organizer.md) | 深度清理并规范化影视库结构。 | 整理下载的电影/剧集，Plex/Jellyfin 适配。 |
+| [**Media Library Organizer**](./media-library-organizer/SKILL.md) | 深度清理并规范化影视库结构。 | 整理下载的电影/剧集，Plex/Jellyfin 适配。 |
 
 ---
 
