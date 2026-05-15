@@ -7,7 +7,7 @@
 ## 可选项目分类
 
 ```
-[2D客户端, 2DSDK, 3D线激光客户端, 3D线激光SDK, 3D双目SDK, 3D双目客户端, 智能机, 视觉工具, 测开, 其他]
+[LP, DWSSDK, 读码门, 读码门SDK, 单间分离, 单间分离SDK, AA点胶, 落格追溯IPC, 落格追溯IPC前端, DFS, WPF公共控件, 3D线激光SDK, 其他]
 ```
 
 ---
@@ -20,10 +20,17 @@ git remote show origin
 
 | Git Remote URL 关键词 | 项目分类 |
 |----------------------|---------|
-| `Laser3DSDK.git` | 3D线激光SDK |
-| `Laser3DClient.git` | 3D线激光客户端 |
-| `MVClient.git` | 2D客户端 |
-| `MVSDK.git` | 2DSDK |
+| `lp-app.git` | LP |
+| `dwssdk.git` | DWSSDK |
+| `codereaderdoorapp.git` | 读码门 |
+| `codereaderdoorsdk.git` | 读码门SDK |
+| `divideapp.git` | 单间分离 |
+| `dividesdk.git` | 单间分离SDK |
+| `aadevice` | AA点胶 |
+| `lgzs-app.git` | 落格追溯IPC |
+| `lgzs-web.git` | 落格追溯IPC前端 |
+| `dfs.git` | DFS |
+| `commoncontrols.wpf.git` | WPF公共控件 |
 
 ---
 
@@ -37,14 +44,6 @@ svn info
 |---------------|---------|
 | `.../HighPrecision3DMeasure/Volume3D/` | 3D线激光SDK |
 | `.../HighPrecision3DMeasure/ProfileViewer` | 3D线激光SDK |
-| `.../HighPrecision3DMeasure/StereoCamera/` | 需进一步判断（见下方） |
-
-### SVN 双目项目特殊判断（StereoCamera 仓库）
-
-当 SVN URL 包含 `StereoCamera` 时，按以下规则判断：
-
-1. 检查是否存在 `.ui` 文件或 `QMainWindow`、`QWidget` 等 QT 相关代码 → **3D双目客户端**
-2. 否则（纯 SDK/API 导出代码，无 QT 界面代码） → **3D双目SDK**
 
 ---
 

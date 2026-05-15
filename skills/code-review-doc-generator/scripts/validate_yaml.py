@@ -372,11 +372,27 @@ class YamlValidator:
                     f"无效值 '{rte.get('change_size')}'"
                 ))
             gain = str(rte.get("efficiency_gain", ""))
-            if gain and not gain.endswith("%"):
-                self.errors.append(ValidationError(
-                    "metrics.review_time_efficiency.efficiency_gain",
-                    f"应以 % 结尾，当前: {gain}"
-                ))
+            if gain:
+                if not gain.endswith("%"):
+                    self.errors.append(ValidationError(
+                        "metrics.review_time_efficiency.efficiency_gain",
+                        f"应以 % 结尾，当前: {gain}"
+                    ))
+                else:
+                    # 校验 % 前是否为有效数字
+                    num_part = gain[:-1]
+                    try:
+                        val = float(num_part)
+                        if val < 0:
+                            self.warnings.append(
+                                f"metrics.review_time_efficiency.efficiency_gain "
+                                f"为负值 ({gain})，请确认"
+                            )
+                    except ValueError:
+                        self.errors.append(ValidationError(
+                            "metrics.review_time_efficiency.efficiency_gain",
+                            f"不是有效数字，当前: {gain}"
+                        ))
 
         # issues
         issues = metrics.get("issues", {})
@@ -428,6 +444,22 @@ class YamlValidator:
                         f"metrics.development.{field}",
                         "AI辅助时此字段必填"
                     ))
+            # 校验 dev_efficiency_gain 格式
+            dev_gain = str(dev.get("dev_efficiency_gain", ""))
+            if dev_gain:
+                if not dev_gain.endswith("%"):
+                    self.errors.append(ValidationError(
+                        "metrics.development.dev_efficiency_gain",
+                        f"应以 % 结尾，当前: {dev_gain}"
+                    ))
+                else:
+                    try:
+                        float(dev_gain[:-1])
+                    except ValueError:
+                        self.errors.append(ValidationError(
+                            "metrics.development.dev_efficiency_gain",
+                            f"不是有效数字，当前: {dev_gain}"
+                        ))
 
     def _check_issue_records(self, records: list):
         if not records:
